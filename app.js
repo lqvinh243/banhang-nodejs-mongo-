@@ -23,6 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/imgsp',express.static('imgsp'));
+app.use('/sanpham/imgsp',express.static('imgsp'));
+app.use('/sanpham/anhsp/imgsp',express.static('imgsp'));
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

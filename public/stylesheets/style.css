@@ -17,11 +17,17 @@ a:hover .card{
 .row-u{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
 }
 
 .col-3{
   text-align: center;
-  margin: 2rem;
+  margin: 2rem auto;
   width: 300px;
+  height:auto;
+}
+
+img{
+  width: auto;
+  height:250px;
 }

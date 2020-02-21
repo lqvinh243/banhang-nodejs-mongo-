@@ -19,7 +19,13 @@ var upload = multer({ storage: storage })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  sanpham.find({})
+  .then(rel => {
+    console.log(rel);
+    res.render('index', { title: 'Trang chủ', data : rel });
+  })
+  .catch(err => console.log(err));
+  
 });
 
 router.post('/upload',upload.any(),function(req,res,next){
@@ -47,6 +53,14 @@ router.post('/uploadsp',function(req,res,next){
   sanpham.collection.insertOne(newsp).then(rel => { res.render('spthanhcong',{title:'Đăng bán sản phẩm mới thành công'})})
 }
 })
+
+router.get('/sanpham/:id',function(req,res,next){
+  var id = req.params.id;
+  sanpham.find({'_id':id})
+  .then(rel => {  res.render('sanpham',{title:'Chi tiết sản phẩm',sp:rel});  })
+  .catch(err => console.log(err));
+})
+
 
 
 

@@ -1,0 +1,34 @@
+<% include header %>
+<link rel="stylesheet" href="/stylesheets/sanpham.css">
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <% sp.forEach(function(data){%>
+      <img src="<%= data.anhsp[0]%>" class="img-fluid img-ban" alt="">
+      <div class="d-flex justify-content-between"> 
+        <% for(var i = 1;i < data.anhsp.length; i++){ %>
+          <a href="anhsp/<%= data.anhsp[i]%>" style="width: 25%;height:25%">
+            <img  src="<%= data.anhsp[i]%>" class="img-fluid img-ban" alt="">
+          </a>
+        
+        <% }  %> 
+      </div>
+    </div>
+    <div class="col-6 inf">
+      <div class="">
+        <div class="">
+          <h1 class="display-3"><%= data.name %> </h1>
+          <p class="lead"><%= data.des %> </p>
+          <hr class="my-2">
+          <p><%= data.price %> đ </p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Mua ngay</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% })  %>
+  </div>
+</div>
+<% include footer %>

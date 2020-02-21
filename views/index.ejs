@@ -2,16 +2,18 @@
 <link rel="stylesheet" href="/stylesheets/style.css">
 
 <div class="row-u">
+<% data.forEach(function(data){%>
   <div class="col-3">
-    <a href="#">
+    <a href="sanpham/<%= data._id%>">
       <div class="card">
-        <img class="card-img-top"  src="/imgsp/1a.jpg" alt="">
+        <img class="card-img-top" src="<%= data.anhsp[0]%>" alt="">
         <div class="card-body">
-          <h4 class="card-title">Hạt cà chua cực tốt</h4>
-          <p class="card-text">100.000 đ</p>
+          <h4 class="card-title"><%= data.name %></h4>
+          <p class="card-text"><%= data.price %>đ</p>
         </div>
       </div>
     </a>
   </div>
+<% })  %>
 </div>
 <% include footer %>

@@ -41,7 +41,7 @@
                 console.log(resp);
             });
             this.on('thumbnail', function (file) {
-                if (file.width < 640 || file.height < 480) {
+                if (file.width > 640 || file.height > 480) {
                     file.rejectDimensions();
                 }
                 else {
