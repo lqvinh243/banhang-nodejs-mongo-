@@ -1,0 +1,65 @@
+<% include header %>
+<title><%= title %></title>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">Đăng ký tài khoản</h1>
+        <p class="lead">Mua và bán hàng nhanh hơn!</p>
+        <hr class="my-2">
+    </div>
+    <form action="/dangky" method="post" class="container" id="render">
+        <div class="form-group">
+            <label for="username">Tài khoản</label>
+            <input type="text" class="form-control" name="username" id="username" aria-describedby="helpId"
+                placeholder="" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="password">Mật khẩu</label>
+            <input type="text" class="form-control" name="password" id="password" aria-describedby="helpId"
+                placeholder="" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="re-password">Nhập lại mật khẩu</label>
+            <input type="text" class="form-control" name="re-password" id="re-password" aria-describedby="helpId"
+                placeholder="" autocomplete="off">
+        </div>
+        <p id="err" style="color:red;font-weight: bold;"></p>
+        <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+    </form>
+</div>
+<% include footer %>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", "#btn", function (e) {
+            e.preventDefault();
+
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var repassword = $('#re-password').val();
+            var err = $('#err');
+            if (password === repassword) {
+                $.ajax({
+                    url: "./dangky",
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    method: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    dataType: 'html',
+                    cache: false,
+                    success: function (data) {
+                        $('#render').html(data);
+                    },
+                    error: function (xhr, ajaxOp, err) {
+                        alert('Lỗi mất rồi');
+                    }
+                });
+            }
+            else{
+                err.html('Mật khẩu nhập lại không trùng khớp');
+            }
+
+        })
+    })
+</script>
